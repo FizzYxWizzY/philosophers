@@ -6,7 +6,7 @@
 /*   By: mflury <mflury@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:37:15 by mflury            #+#    #+#             */
-/*   Updated: 2023/11/15 02:04:41 by mflury           ###   ########.fr       */
+/*   Updated: 2023/11/28 15:36:06 by mflury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,22 @@ void	*routine(void *mutex)
 	
 	while (1)
 	{
-		pthread_mutex_lock((pthread_mutex_t *)mutex);
-		// pthread_mutex_lock((pthread_mutex_t *)mutex);
-		printf("Thread: %d\n", i);
-		i++;
-		usleep(100000);
-		pthread_mutex_unlock((pthread_mutex_t *)mutex);
-		if (i >= 100)
+		if (!(i < 10000))
 		{
+			pthread_mutex_lock(mutex);
 			printf("Thread: byebye friend.\n");
+			pthread_mutex_unlock(mutex);
 			return NULL;
 		}
+		pthread_mutex_lock(mutex);
+		if (i < 10000)
+		{
+			printf("Thread: %d\n", i + 1);
+			i++;
+			usleep(1000);
+		}
+		pthread_mutex_unlock(mutex);
 	}
-	// pthread_mutex_unlock((pthread_mutex_t *)mutex);
-	// printf("Thread: byebye friend.\n");
-	// pthread_mutex_unlock((pthread_mutex_t *)mutex);
-	// return NULL;
 }
 
 int	main(int argc, char **argv)
@@ -42,13 +42,19 @@ int	main(int argc, char **argv)
 	(void)argv;
 	pthread_t	t1;
 	pthread_t	t2;
+	pthread_t	t3;
+	pthread_t	t4;
 	pthread_mutex_t	mutex;
 
 	pthread_mutex_init(&mutex, NULL);	
-	pthread_create(&t1, NULL, &routine, (void *)&mutex);
-	pthread_create(&t2, NULL, &routine, (void *)&mutex);
+	pthread_create(&t1, NULL, &routine, &mutex);
+	pthread_create(&t2, NULL, &routine, &mutex);
+	pthread_create(&t3, NULL, &routine, &mutex);
+	pthread_create(&t4, NULL, &routine, &mutex);
 	pthread_join(t1, NULL);
 	pthread_join(t2, NULL);
+	pthread_join(t3, NULL);
+	pthread_join(t4, NULL);
 	pthread_mutex_destroy(&mutex);
 	return (0);
 }
