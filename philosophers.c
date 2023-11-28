@@ -6,7 +6,7 @@
 /*   By: mflury <mflury@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:37:15 by mflury            #+#    #+#             */
-/*   Updated: 2023/11/28 15:36:06 by mflury           ###   ########.fr       */
+/*   Updated: 2023/11/28 15:42:31 by mflury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@ void	*routine(void *mutex)
 	{
 		if (!(i < 10000))
 		{
-			pthread_mutex_lock(mutex);
 			printf("Thread: byebye friend.\n");
-			pthread_mutex_unlock(mutex);
 			return NULL;
 		}
 		pthread_mutex_lock(mutex);
