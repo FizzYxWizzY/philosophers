@@ -1,12 +1,16 @@
-#include <stdio.h>
-#include <stdlib.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philosophers.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mflury <mflury@student.42lausanne.ch>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/13 03:19:43 by mflury            #+#    #+#             */
+/*   Updated: 2023/12/13 03:19:50 by mflury           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-typedef struct	s_philo
-{
-	int				id;
-	struct s_philo	*next;
-}				t_philo;
-
+#include "philosophers.h"
 
 void	deletephilolist(t_philo *list)
 {
