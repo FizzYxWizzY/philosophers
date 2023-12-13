@@ -1,58 +1,77 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   philosophers.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mflury <mflury@student.42lausanne.ch>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 17:37:15 by mflury            #+#    #+#             */
-/*   Updated: 2023/11/28 15:42:31 by mflury           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include <stdio.h>
+#include <stdlib.h>
 
-#include "philosophers.h"
-
-void	*routine(void *mutex)
+typedef struct	s_philo
 {
-	static int	i = 0;
-	
-	while (1)
+	int				id;
+	struct s_philo	*next;
+}				t_philo;
+
+
+void	deletephilolist(t_philo *list)
+{
+	t_philo	*tmp;
+
+	while (list->next)
 	{
-		if (!(i < 10000))
-		{
-			printf("Thread: byebye friend.\n");
-			return NULL;
-		}
-		pthread_mutex_lock(mutex);
-		if (i < 10000)
-		{
-			printf("Thread: %d\n", i + 1);
-			i++;
-			usleep(1000);
-		}
-		pthread_mutex_unlock(mutex);
+		tmp = list;
+		list = list->next;
+		free(tmp);
 	}
+	free(list);
 }
 
-int	main(int argc, char **argv)
+t_philo	*lastphilo(t_philo *list)
 {
-	(void)argc;
-	(void)argv;
-	pthread_t	t1;
-	pthread_t	t2;
-	pthread_t	t3;
-	pthread_t	t4;
-	pthread_mutex_t	mutex;
+	
+	while (list->next)
+	{
+		list = list->next;
+	}
+	return (list);
+}
 
-	pthread_mutex_init(&mutex, NULL);	
-	pthread_create(&t1, NULL, &routine, &mutex);
-	pthread_create(&t2, NULL, &routine, &mutex);
-	pthread_create(&t3, NULL, &routine, &mutex);
-	pthread_create(&t4, NULL, &routine, &mutex);
-	pthread_join(t1, NULL);
-	pthread_join(t2, NULL);
-	pthread_join(t3, NULL);
-	pthread_join(t4, NULL);
-	pthread_mutex_destroy(&mutex);
-	return (0);
+void	addphilo(t_philo *list, t_philo *new_philo)
+{
+	t_philo	*philo;
+
+	philo = lastphilo(list);
+	if (!philo)
+		list = new_philo;
+	else
+		philo->next = new_philo;
+}
+
+t_philo	*newphilo(int id)
+{
+	t_philo	*philo;
+
+	philo = malloc(sizeof(t_philo));
+	if (!philo)
+	{
+		return (NULL);
+	}
+	philo->id = id;
+	philo->next = NULL;
+	return (philo);
+}
+
+int	main()
+{
+	t_philo *list;
+	t_philo	*tmp;
+	int		id;
+	id = 1;
+	list = NULL;
+	list = newphilo(id);
+	while (id++ < 4)
+		addphilo(list, newphilo(id));
+	tmp = list;
+	while (tmp)
+	{
+		printf("philo id = %d\n", tmp->id);
+		tmp = tmp->next;
+	}
+	deletephilolist(list);
+	return 0;
 }

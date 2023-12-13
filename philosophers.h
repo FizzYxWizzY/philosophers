@@ -6,7 +6,7 @@
 /*   By: mflury <mflury@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:29:08 by mflury            #+#    #+#             */
-/*   Updated: 2023/11/06 17:35:59 by mflury           ###   ########.fr       */
+/*   Updated: 2023/12/13 00:00:05 by mflury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@
 #include <limits.h>
 #include <pthread.h>
 
-
+typedef struct	s_philo
+{
+	int				id;
+	struct s_philo	*next;
+}				t_philo;
 
 #endif
