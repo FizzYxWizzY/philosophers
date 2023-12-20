@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.c                                     :+:      :+:    :+:   */
+/*   philosophers_thread_utils.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mflury <mflury@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 03:19:43 by mflury            #+#    #+#             */
-/*   Updated: 2023/12/20 21:53:08 by mflury           ###   ########.fr       */
+/*   Created: 2023/12/20 21:31:42 by mflury            #+#    #+#             */
+/*   Updated: 2023/12/20 22:19:59 by mflury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	*routine(void *arg)
+void	createphilothread(t_philo *list)
 {
-	(void) arg;
-	printf("Hello!\n");
-	return NULL;
+	while (list)
+	{
+		pthread_create(&list->thread, NULL, &routine, (void *)list);
+		list = list->next;
+	}
 }
 
-int	main()
+void	joinphilothread(t_philo *list)
 {
-	t_philo *list;
-	int		id;
-	
-	id = 1;
-	list = NULL;
-	list = newphilo(id);
-	while (id++ < 4)
-		addphilo(list, newphilo(id));
-	createphilothread(list);
-	joinphilothread(list);
-	showphilolist(list);
-	deletephilolist(list);
-	return 0;
+	while (list)
+	{
+		pthread_join(list->thread, NULL);
+		list = list->next;
+	}
 }
