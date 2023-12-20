@@ -6,7 +6,7 @@
 #    By: mflury <mflury@student.42lausanne.ch>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/13 02:16:00 by mflury            #+#    #+#              #
-#    Updated: 2023/12/13 03:11:56 by mflury           ###   ########.fr        #
+#    Updated: 2023/12/19 17:19:10 by mflury           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME		:= a.out
 
 SRCS 		:= \
 	philosophers.c \
+	philosophers_utils.c \
 
 OBJS		:= $(SRCS:.c=.o)
 
