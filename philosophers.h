@@ -6,7 +6,7 @@
 /*   By: mflury <mflury@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:29:08 by mflury            #+#    #+#             */
-/*   Updated: 2023/12/20 21:51:19 by mflury           ###   ########.fr       */
+/*   Updated: 2023/12/21 04:48:15 by mflury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct	s_philo
 {
 	int				id;
 	pthread_t		thread;
+	pthread_mutex_t	mutex;
 	struct s_philo	*next;
 }				t_philo;
 
@@ -38,15 +39,15 @@ void	showphilolist(t_philo *list);
 void	createphilothread(t_philo *list);
 void	joinphilothread(t_philo *list);
 
+// philo mutex utils:
+void	createphilomutex(t_philo *list);
+void	destroyphilomutex(t_philo *list);
+
 // routine of all the philosophers:
 void	*routine(void *arg);
 
 // TODO LIST:
 
-// add thread to list,
-// // put thread in node,
-// // make a function that create all threads
-// // make a function that join the threads;
 // add mutex to list,
 // // need to put a delay to join the threads /!\ deadlocks /!\,
 // // 
