@@ -6,7 +6,7 @@
 /*   By: mflury <mflury@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 03:19:43 by mflury            #+#    #+#             */
-/*   Updated: 2023/12/21 05:10:13 by mflury           ###   ########.fr       */
+/*   Updated: 2023/12/21 06:04:08 by mflury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 void	*routine(void *arg)
 {
-	pthread_mutex_lock(&((t_philo *)(arg))->mutex);
-	printf("Hello!\n");
-	pthread_mutex_unlock(&((t_philo *)(arg))->mutex);
+	pthread_mutex_lock(&((t_philo *)arg)->mutex);
+	printf("Philo%d: Hello!\n", ((t_philo *)arg)->id);
+	printf("philo's mutex: %p\n", &((t_philo *)arg)->mutex);
+	pthread_mutex_unlock(&((t_philo *)arg)->mutex);
 	return NULL;
 }
 
@@ -33,8 +34,8 @@ int	main()
 	initphilomutex(list);
 	createphilothread(list);
 	joinphilothread(list);
-	showphilolist(list);
-	deletephilolist(list);
+	// showphilolist(list);
 	destroyphilomutex(list);
+	deletephilolist(list);
 	return 0;
 }
