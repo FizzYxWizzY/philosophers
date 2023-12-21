@@ -6,7 +6,7 @@
 /*   By: mflury <mflury@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:29:08 by mflury            #+#    #+#             */
-/*   Updated: 2023/12/21 06:55:13 by mflury           ###   ########.fr       */
+/*   Updated: 2023/12/21 07:19:18 by mflury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	initphilomutex(t_philo *list);
 void	setphilonextmutex(t_philo *list);
 void	destroyphilomutex(t_philo *list);
 
-// routine for all the philosophers:
+// routine common to all the philosophers:
 void	*routine(void *arg);
 
 // TODO LIST:
