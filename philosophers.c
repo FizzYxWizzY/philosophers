@@ -6,7 +6,7 @@
 /*   By: mflury <mflury@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 03:19:43 by mflury            #+#    #+#             */
-/*   Updated: 2023/12/21 05:01:31 by mflury           ###   ########.fr       */
+/*   Updated: 2023/12/21 05:10:13 by mflury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,11 @@ int	main()
 	list = newphilo(id);
 	while (id++ < 4)
 		addphilo(list, newphilo(id));
-	createphilomutex(list);
+	initphilomutex(list);
 	createphilothread(list);
 	joinphilothread(list);
 	showphilolist(list);
 	deletephilolist(list);
+	destroyphilomutex(list);
 	return 0;
 }

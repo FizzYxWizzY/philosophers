@@ -6,7 +6,7 @@
 /*   By: mflury <mflury@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:29:08 by mflury            #+#    #+#             */
-/*   Updated: 2023/12/21 04:48:15 by mflury           ###   ########.fr       */
+/*   Updated: 2023/12/21 05:10:14 by mflury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	createphilothread(t_philo *list);
 void	joinphilothread(t_philo *list);
 
 // philo mutex utils:
-void	createphilomutex(t_philo *list);
+void	initphilomutex(t_philo *list);
 void	destroyphilomutex(t_philo *list);
 
 // routine of all the philosophers:

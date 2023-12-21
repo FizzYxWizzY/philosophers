@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers_thread_utils.c                        :+:      :+:    :+:   */
+/*   philosophers_mutex_utils.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mflury <mflury@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/20 21:31:42 by mflury            #+#    #+#             */
-/*   Updated: 2023/12/21 05:04:16 by mflury           ###   ########.fr       */
+/*   Created: 2023/12/21 05:04:02 by mflury            #+#    #+#             */
+/*   Updated: 2023/12/21 05:10:17 by mflury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	createphilothread(t_philo *list)
+void	initphilomutex(t_philo *list)
 {
 	while (list)
 	{
-		pthread_create(&list->thread, NULL, &routine, (void *)list);
+		pthread_mutex_init(&list->mutex, NULL);
 		list = list->next;
 	}
 }
 
-void	joinphilothread(t_philo *list)
+void	destroyphilomutex(t_philo *list)
 {
 	while (list)
 	{
-		pthread_join(list->thread, NULL);
+		pthread_mutex_destroy(&list->mutex);
 		list = list->next;
 	}
 }
