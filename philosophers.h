@@ -6,7 +6,7 @@
 /*   By: mflury <mflury@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:29:08 by mflury            #+#    #+#             */
-/*   Updated: 2023/12/21 05:10:14 by mflury           ###   ########.fr       */
+/*   Updated: 2023/12/21 06:55:13 by mflury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct	s_philo
 	int				id;
 	pthread_t		thread;
 	pthread_mutex_t	mutex;
+	pthread_mutex_t	*next_mutex;
 	struct s_philo	*next;
 }				t_philo;
 
@@ -41,9 +42,10 @@ void	joinphilothread(t_philo *list);
 
 // philo mutex utils:
 void	initphilomutex(t_philo *list);
+void	setphilonextmutex(t_philo *list);
 void	destroyphilomutex(t_philo *list);
 
-// routine of all the philosophers:
+// routine for all the philosophers:
 void	*routine(void *arg);
 
 // TODO LIST:
