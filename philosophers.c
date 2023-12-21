@@ -6,7 +6,7 @@
 /*   By: mflury <mflury@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 03:19:43 by mflury            #+#    #+#             */
-/*   Updated: 2023/12/21 17:55:13 by mflury           ###   ########.fr       */
+/*   Updated: 2023/12/21 23:01:51 by mflury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	*routine(void *arg)
 	i = 0;
 	if (((t_philo *)arg)->id % 2)
 		usleep(100);
-	while (i < 10)
+	while (i < 1)
 	{
 		philo_eat((t_philo *)arg);
 		philo_think((t_philo *)arg);
@@ -63,13 +63,15 @@ void	*routine(void *arg)
 	return NULL;
 }
 
-int	main()
+int	main(int argc, char **argv)
 {
 	t_philo *list;
 	int		id;
-	
+
 	id = 1;
 	list = NULL;
+	if (!isvalidargs(argc, argv))
+		return 1;
 	list = newphilo(id);
 	while (id++ < 5)
 		addphilo(list, newphilo(id));

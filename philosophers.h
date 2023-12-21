@@ -6,7 +6,7 @@
 /*   By: mflury <mflury@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:29:08 by mflury            #+#    #+#             */
-/*   Updated: 2023/12/21 18:06:24 by mflury           ###   ########.fr       */
+/*   Updated: 2023/12/21 23:00:39 by mflury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <stdlib.h>
 #include <limits.h>
 #include <pthread.h>
+#include <sys/time.h>
 
 // struct for philosophers list:
 typedef struct	s_philo
@@ -44,6 +45,14 @@ void	joinphilothread(t_philo *list);
 void	initphilomutex(t_philo *list);
 void	setphilonextmutex(t_philo *list);
 void	destroyphilomutex(t_philo *list);
+
+// arguments utils:
+int		ft_atoi(const char *str);
+int		isvalidargs(int argc, char **argv);
+
+// time utils:
+int		ft_usleep(size_t milliseconds);
+size_t	get_current_time(void);
 
 // routine common to all the philosophers:
 void	*routine(void *arg);
