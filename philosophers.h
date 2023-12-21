@@ -6,7 +6,7 @@
 /*   By: mflury <mflury@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:29:08 by mflury            #+#    #+#             */
-/*   Updated: 2023/12/21 07:19:18 by mflury           ###   ########.fr       */
+/*   Updated: 2023/12/21 18:06:24 by mflury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,17 @@ void	destroyphilomutex(t_philo *list);
 
 // routine common to all the philosophers:
 void	*routine(void *arg);
-
+void	philo_eat(t_philo *philo);
+void	philo_think(t_philo *philo);
+void	philo_sleep(t_philo *philo);
 // TODO LIST:
 
-// add mutex to list,
-// // need to put a delay to join the threads /!\ deadlocks /!\,
+// argv:
+// // use argv as parameters.
+// timer:
+// // make a timestamper for all the actions/philos.
+// routine:
+// // make the routine eat/think/sleep.
 // // 
-// need to make utils 
 
 #endif
