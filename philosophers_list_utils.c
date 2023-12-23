@@ -6,7 +6,7 @@
 /*   By: mflury <mflury@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 16:50:03 by mflury            #+#    #+#             */
-/*   Updated: 2023/12/20 21:09:15 by mflury           ###   ########.fr       */
+/*   Updated: 2023/12/23 06:23:11 by mflury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ void	deletephilolist(t_philo *list)
 {
 	t_philo	*tmp;
  
-	while (list->next)
+	while (list)
 	{
 		tmp = list;
 		list = list->next;
+		free(tmp->param);
 		free(tmp);
 	}
-	free(list);
 }
 
 t_philo	*lastphilo(t_philo *list)

@@ -6,7 +6,7 @@
 /*   By: mflury <mflury@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:29:08 by mflury            #+#    #+#             */
-/*   Updated: 2023/12/21 23:00:39 by mflury           ###   ########.fr       */
+/*   Updated: 2023/12/23 06:14:13 by mflury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,15 @@
 #include <pthread.h>
 #include <sys/time.h>
 
+// struct for the arguments;
+typedef struct	s_param
+{
+	int			philo_nb;
+	int			death_time;
+	int			eat_time;
+	int			sleep_time;
+	int			meal_nb;
+}				t_param;
 // struct for philosophers list:
 typedef struct	s_philo
 {
@@ -27,6 +36,7 @@ typedef struct	s_philo
 	pthread_t		thread;
 	pthread_mutex_t	mutex;
 	pthread_mutex_t	*next_mutex;
+	struct s_param	*param;
 	struct s_philo	*next;
 }				t_philo;
 
@@ -47,8 +57,10 @@ void	setphilonextmutex(t_philo *list);
 void	destroyphilomutex(t_philo *list);
 
 // arguments utils:
-int		ft_atoi(const char *str);
 int		isvalidargs(int argc, char **argv);
+void	setphiloparam(int argc, char **argv, t_philo *list);
+void	showphiloparam(t_philo *list);
+int		ft_atoi(const char *str);
 
 // time utils:
 int		ft_usleep(size_t milliseconds);

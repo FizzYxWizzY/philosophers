@@ -6,12 +6,47 @@
 /*   By: mflury <mflury@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 21:32:49 by mflury            #+#    #+#             */
-/*   Updated: 2023/12/21 23:04:26 by mflury           ###   ########.fr       */
+/*   Updated: 2023/12/23 06:20:11 by mflury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
+void	showphiloparam(t_philo *list)
+{
+	while (list)
+	{
+		printf("Philo %d:\n%d\n%d\n%d\n%d\n%d\n\n", list->id, list->param->philo_nb,
+			list->param->death_time, list->param->eat_time,
+			list->param->sleep_time, list->param->meal_nb);
+		list = list->next;
+	}
+}
+
+void	setphiloparam(int argc, char **argv, t_philo *list)
+{
+	while (list)
+	{
+		list->param = malloc(sizeof(t_param));
+		if (argc == 5)
+		{
+			list->param->philo_nb = ft_atoi(argv[1]);
+			list->param->death_time = ft_atoi(argv[2]);
+			list->param->eat_time = ft_atoi(argv[3]);
+			list->param->sleep_time = ft_atoi(argv[4]);
+			list->param->meal_nb = 0;
+		}
+		if (argc == 6)
+		{
+			list->param->philo_nb = ft_atoi(argv[1]);
+			list->param->death_time = ft_atoi(argv[2]);
+			list->param->eat_time = ft_atoi(argv[3]);
+			list->param->sleep_time = ft_atoi(argv[4]);
+			list->param->meal_nb = ft_atoi(argv[5]);
+		}
+		list = list->next;
+	}
+}
 
 int	isvalidargs(int argc, char **argv)
 {
@@ -20,7 +55,7 @@ int	isvalidargs(int argc, char **argv)
 
 	i = 1;
 	j = 0;
-	if ((argc != 4) & (argc != 5))
+	if ((argc != 5) & (argc != 6))
 		return 0;
 	while (argv[i])
 	{
