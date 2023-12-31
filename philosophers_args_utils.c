@@ -6,7 +6,7 @@
 /*   By: mflury <mflury@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 21:32:49 by mflury            #+#    #+#             */
-/*   Updated: 2023/12/23 06:20:11 by mflury           ###   ########.fr       */
+/*   Updated: 2023/12/30 05:36:57 by mflury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	showphiloparam(t_philo *list)
 {
 	while (list)
 	{
-		printf("Philo %d:\n%d\n%d\n%d\n%d\n%d\n\n", list->id, list->param->philo_nb,
+		printf("Philo %d:\n%d\n%ld\n%ld\n%ld\n%d\n\n", list->id, list->param->philo_nb,
 			list->param->death_time, list->param->eat_time,
 			list->param->sleep_time, list->param->meal_nb);
 		list = list->next;

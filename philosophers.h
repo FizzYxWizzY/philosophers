@@ -6,7 +6,7 @@
 /*   By: mflury <mflury@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:29:08 by mflury            #+#    #+#             */
-/*   Updated: 2023/12/23 06:14:13 by mflury           ###   ########.fr       */
+/*   Updated: 2023/12/31 06:48:09 by mflury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,11 @@
 typedef struct	s_param
 {
 	int			philo_nb;
-	int			death_time;
-	int			eat_time;
-	int			sleep_time;
+	size_t		start_time;
+	size_t		start;
+	size_t		death_time;
+	size_t		eat_time;
+	size_t		sleep_time;
 	int			meal_nb;
 }				t_param;
 // struct for philosophers list:
@@ -71,14 +73,6 @@ void	*routine(void *arg);
 void	philo_eat(t_philo *philo);
 void	philo_think(t_philo *philo);
 void	philo_sleep(t_philo *philo);
-// TODO LIST:
 
-// argv:
-// // use argv as parameters.
-// timer:
-// // make a timestamper for all the actions/philos.
-// routine:
-// // make the routine eat/think/sleep.
-// // 
 
 #endif
