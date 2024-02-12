@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers_thread_utils.c                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mflury <mflury@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/31 11:16:04 by mflury            #+#    #+#             */
-/*   Updated: 2024/02/10 16:03:34 by mflury           ###   ########.fr       */
+/*   Created: 2024/02/10 15:46:46 by mflury            #+#    #+#             */
+/*   Updated: 2024/02/11 13:37:24 by mflury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "../includes/philosophers.h"
 
-void	createphilothread(t_ctx *ctx, void *routine)
+int	main(int argc, char **argv)
 {
-	ctx->start_time = get_current_time();
-	while (ctx->philolist)
-	{
-		pthread_create(&ctx->philolist->thread, NULL, routine, (void *)ctx);
-		ctx->philolist = ctx->philolist->next;
-	}
-}
+	t_rules	rules;
 
-void	joinphilothread(t_ctx *ctx)
-{
-	while (ctx->philolist)
+	if (argc < 5 || argc > 6)
 	{
-		pthread_join(ctx->philolist->thread, NULL);
-		ctx->philolist = ctx->philolist->next;
+		printf("Bad Arguments.\n");
+		return (1);
 	}
+	if (make_rules(&rules, argv, argc))
+		return (1);
+	if (make_philo_thread(&rules))
+	{
+		printf("Thread error.\n");
+		return (1);
+	}
+	return (0);
 }

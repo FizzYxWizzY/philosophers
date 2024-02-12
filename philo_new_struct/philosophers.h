@@ -6,7 +6,7 @@
 /*   By: mflury <mflury@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 07:49:13 by mflury            #+#    #+#             */
-/*   Updated: 2024/02/08 06:08:40 by mflury           ###   ########.fr       */
+/*   Updated: 2024/02/10 16:03:39 by mflury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,22 +46,22 @@ typedef struct	s_philo
 t_philo	*newphilo(int id);
 t_philo	*lastphilo(t_philo *list);
 void	addphilo(t_philo *list, t_philo *new_philo);
-void	deletephilolist(t_philo *list);
+void	deletephilolist(t_ctx *ctx);
 void	showphilolist(t_philo *list);
 
 // philo thread utils:
-void	createphilothread(t_philo *list);
-void	joinphilothread(t_philo *list);
+void	createphilothread(t_ctx *ctx, void *routine);
+void	joinphilothread(t_ctx *ctx);
 
 // philo mutex utils:
-void	initphilomutex(t_philo *list);
-void	setphilonextmutex(t_philo *list);
-void	destroyphilomutex(t_philo *list);
+void	initphilomutex(t_ctx *ctx);
+void	setphilonextmutex(t_ctx *ctx);
+void	destroyphilomutex(t_ctx *ctx);
 
 // arguments utils:
 int		isvalidargs(int argc, char **argv);
-void	setphiloparam(int argc, char **argv, t_philo *list);
-void	showphiloparam(t_philo *list);
+void	setphiloparam(int argc, char **argv, t_ctx *ctx);
+void	showphiloparam(t_ctx *ctx);
 int		ft_atoi(const char *str);
 
 // time utils:

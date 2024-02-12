@@ -6,7 +6,7 @@
 /*   By: mflury <mflury@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 05:42:09 by mflury            #+#    #+#             */
-/*   Updated: 2024/02/08 05:47:49 by mflury           ###   ########.fr       */
+/*   Updated: 2024/02/10 16:03:32 by mflury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,34 @@
 
 void	showphiloparam(t_ctx *ctx)
 {
-	while (ctx)
+	while (ctx->philolist)
 	{
-		printf("Philo %d:\n%d\n%d\n%d\n%d\n%d\n\n", list->id, list->param->philo_nb,
-			list->param->death_time, list->param->eat_time,
-			list->param->sleep_time, list->param->meal_nb);
-		list = list->next;
+		printf("Philo %d:\n%d\n%d\n%d\n%d\n%d\n\n", ctx->philolist->id, ctx->philo_nb,
+			ctx->death_time, ctx->eat_time, ctx->sleep_time, ctx->meal_nb);
+		ctx->philolist = ctx->philolist->next;
 	}
 }
 
-void	setphiloparam(int argc, char **argv, t_philo *list)
+void	setphiloparam(int argc, char **argv, t_ctx *ctx)
 {
-	while (list)
+	while (ctx->philolist)
 	{
-		list->param = malloc(sizeof(t_param));
 		if (argc == 5)
 		{
-			list->param->philo_nb = ft_atoi(argv[1]);
-			list->param->death_time = ft_atoi(argv[2]);
-			list->param->eat_time = ft_atoi(argv[3]);
-			list->param->sleep_time = ft_atoi(argv[4]);
-			list->param->meal_nb = 0;
+			ctx->philo_nb = ft_atoi(argv[1]);
+			ctx->death_time = ft_atoi(argv[2]);
+			ctx->eat_time = ft_atoi(argv[3]);
+			ctx->sleep_time = ft_atoi(argv[4]);
+			ctx->meal_nb = 0;
 		}
-		if (argc == 6)
+		else if (argc == 6)
 		{
-			list->param->philo_nb = ft_atoi(argv[1]);
-			list->param->death_time = ft_atoi(argv[2]);
-			list->param->eat_time = ft_atoi(argv[3]);
-			list->param->sleep_time = ft_atoi(argv[4]);
-			list->param->meal_nb = ft_atoi(argv[5]);
+			ctx->philo_nb = ft_atoi(argv[1]);
+			ctx->death_time = ft_atoi(argv[2]);
+			ctx->eat_time = ft_atoi(argv[3]);
+			ctx->sleep_time = ft_atoi(argv[4]);
+			ctx->meal_nb = ft_atoi(argv[5]);
 		}
-		list = list->next;
 	}
 }
 
